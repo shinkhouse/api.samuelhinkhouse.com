@@ -13,7 +13,7 @@ app.use(
         origin: '*'
     })
 );
-const port = process.env.port || 80;
+const port = process.env.PORT || 80;
 
 app.listen(port, () => {
     console.log(`shinkhouse apis listening on port ${port}`);
