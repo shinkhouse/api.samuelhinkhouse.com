@@ -5,7 +5,7 @@ const cors = require('cors');
 const app = express();
 const darkSkyApiKey = process.env.darkSkyApiKey;
 const googleMapsApiKey =
-    process.env.googleMapsApiKey || 'AIzaSyCOFlUHQy4TKQxd__h_j3AU4xRzcp3HRJ4';
+    process.env.googleMapsApiKey;
 const openCageApiKey = process.env.openCageApiKey;
 
 app.use(express.json());
