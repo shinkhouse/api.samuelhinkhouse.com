@@ -4,7 +4,8 @@ const cors = require('cors');
 
 const app = express();
 const darkSkyApiKey = process.env.darkSkyApiKey;
-const googleMapsApiKey = process.env.googleMapsApiKey;
+const googleMapsApiKey =
+    process.env.googleMapsApiKey || 'AIzaSyCOFlUHQy4TKQxd__h_j3AU4xRzcp3HRJ4';
 const openCageApiKey = process.env.openCageApiKey;
 
 app.use(express.json());
@@ -71,6 +72,19 @@ app.get('/maps/api/geocode/json', async (req, res) => {
             // console.log(response.status);
             res.json(response.data);
         });
+});
+
+app.get('/maps/api/reverse-geocode/json', async (req, res) => {
+    const params = req.query;
+    const apiUrl =
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${params.latitude},${params.longitude}&key=${googleMapsApiKey}`;
+    axios.get(apiUrl).then((response) => {
+        // key=${googleMapsApiKey}
+        console.log(apiUrl);
+        // console.log(response.data);
+        // console.log(response.status);
+        res.json(response.data);
+    });
 });
 
 app.get('/geocode/v1/json', async (req, res) => {
