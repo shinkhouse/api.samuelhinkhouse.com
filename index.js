@@ -7,8 +7,7 @@ const darkSkyApiKey = process.env.darkSkyApiKey;
 const googleMapsApiKey =
     process.env.googleMapsApiKey;
 const openCageApiKey = process.env.openCageApiKey;
-const wordsApiKey =
-    process.env.wordsApiKey;
+const wordsApiKey = process.env.wordsApiKey;
 const giphyApiKey =
     process.env.giphyApiKey;
 
@@ -27,8 +26,26 @@ app.listen(port, () => {
 app.get('/', async(req, res) => {
     res.json({status: 'App is up and running'})
 });
+app.get('/dictionary/random', async(req,res) => {var options = {
+        method: 'GET',
+        url: 'https://wordsapiv1.p.rapidapi.com/words/',
+        params: { random: 'true' },
+        headers: {
+            'x-rapidapi-host': 'wordsapiv1.p.rapidapi.com',
+            'x-rapidapi-key': wordsApiKey
+        }
+    };
 
-app.get('/words/:word', async(req, res) => {
+    axios
+        .request(options)
+        .then(function (response) {
+            res.json(response.data)
+        })
+        .catch(function (error) {
+            console.error(error);
+        });
+})
+app.get('/dictionary/words/:word', async(req, res) => {
     console.log(req.params, req.query);
     var options = {
         method: 'GET',
