@@ -69,9 +69,6 @@ app.get('/gifs/search', async(req, res) => {
     const apiUrl = `https://api.giphy.com/v1/gifs/search?q=${req.query.q}%20&api_key=${giphyApiKey}&limit=50`;;
 
     axios.get(apiUrl).then((response) => {
-        console.log(apiUrl);
-        console.log(response.data);
-        console.log(response.status);
         res.json(response.data);
     });
 });
@@ -80,9 +77,6 @@ app.get('/gifs/trending', async (req, res) => {
     const apiUrl = `https://api.giphy.com/v1/gifs/trending?q=${req.query.q}%20&api_key=${giphyApiKey}&limit=50`;
 
     axios.get(apiUrl).then((response) => {
-        console.log(apiUrl);
-        console.log(response.data);
-        console.log(response.status);
         res.json(response.data);
     });
 });
